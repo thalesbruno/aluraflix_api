@@ -1,0 +1,17 @@
+{
+  "name": "aluraflix_api",
+  "version": "1.0.0",
+  "description": "Aluraflix Rest API",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "@thalesbruno",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.7"
+  }
+}
