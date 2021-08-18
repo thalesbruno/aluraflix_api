@@ -13,10 +13,6 @@ const videoSchema = new mongoose.Schema({
     type: String,
     required: [true, "URL is required"],
   },
-  created: {
-    type: Date,
-    required: [true, "Created date is required"],
-  },
 });
 
 const Video = mongoose.model("Video", videoSchema);
