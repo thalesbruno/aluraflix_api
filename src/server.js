@@ -1,7 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const videoRouter = require("./routes/videoRoutes");
 const config = require("./config");
+const videoRouter = require("./routes/videoRoutes");
+const categoriaRouter = require("./routes/categoriaRoutes");
 
 const app = express();
 const server = config.server.host;
@@ -22,6 +23,7 @@ mongoose.connect(db_uri, {
 });
 
 app.use(videoRouter);
+app.use(categoriaRouter);
 
 app.listen(port, () =>
   console.log(`Server is running and listening at http://localhost:${port}`)

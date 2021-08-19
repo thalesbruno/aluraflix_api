@@ -3,16 +3,32 @@ const videoModel = require("../models/video");
 
 const app = express();
 
-app.get("/videos", async (req, res) => {
-  try {
-    const videos = await videoModel.find({});
-    res.send(videos);
-  } catch (error) {
-    res.status(500).send(error);
+app.get("/videos/", async (req, res) => {
+  if (req.query.search) {
+    try {
+      let search = req.query.search;
+      const videos = await videoModel
+        .find({ title: { $regex: search, $options: "i" } })
+        .exec();
+      if (!videos) {
+        res.status(404).send("No videos found");
+      } else {
+        res.send(videos);
+      }
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  } else {
+    try {
+      const videos = await videoModel.find({});
+      res.send(videos);
+    } catch (error) {
+      res.status(500).send(error);
+    }
   }
 });
 
-app.get("/videos/:id", async (req, res) => {
+app.get("/videos/:id/", async (req, res) => {
   try {
     const video = await videoModel.findById(req.params.id);
     if (!video) {
@@ -25,7 +41,7 @@ app.get("/videos/:id", async (req, res) => {
   }
 });
 
-app.post("/videos", async (req, res) => {
+app.post("/videos/", async (req, res) => {
   const video = new videoModel(req.body);
 
   try {
@@ -36,7 +52,7 @@ app.post("/videos", async (req, res) => {
   }
 });
 
-app.patch("/videos/:id", async (req, res) => {
+app.patch("/videos/:id/", async (req, res) => {
   try {
     const video = await videoModel.findByIdAndUpdate(req.params.id, req.body);
     await video.save();
@@ -47,7 +63,7 @@ app.patch("/videos/:id", async (req, res) => {
   }
 });
 
-app.delete("/videos/:id", async (req, res) => {
+app.delete("/videos/:id/", async (req, res) => {
   try {
     const video = await videoModel.findByIdAndDelete(req.params.id);
     if (!video) {
