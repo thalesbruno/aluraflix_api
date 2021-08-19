@@ -6,7 +6,7 @@ const categoriaRouter = require("./routes/categoriaRoutes");
 
 const app = express();
 const server = config.server.host;
-const port = config.server.port;
+const port = config.server.port || 3000;
 
 const db_name = config.database.host;
 const db_pass = config.database.password;
