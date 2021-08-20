@@ -5,7 +5,7 @@ const videoRouter = require("./routes/videoRoutes");
 const categoriaRouter = require("./routes/categoriaRoutes");
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 3000;
 
 const db_name = config.database.host;
 const db_pass = config.database.password;
