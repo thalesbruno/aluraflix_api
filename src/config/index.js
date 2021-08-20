@@ -10,10 +10,6 @@ if (envFound.error) {
 }
 
 module.exports = {
-  server: {
-    host: process.env.SERVER_HOST,
-    // port: process.env.PORT,
-  },
   database: {
     host: process.env.DB_NAME,
     user: process.env.DB_USER,
